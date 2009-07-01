@@ -1,0 +1,54 @@
+#N canvas 240 35 594 321 10;
+#X declare -lib mrpeach/routeOSC;
+#X declare -lib mrpeach/udpreceive;
+#X declare -lib mrpeach/unpackOSC;
+#X obj 177 82 import mrpeach/routeOSC;
+#X obj 178 37 import mrpeach/udpreceive;
+#X text 183 -1 receiving osc messages;
+#X text 270 383 osc_simple01.pd;
+#X obj 177 60 import mrpeach/unpackOSC;
+#X obj 165 195 unpackOSC;
+#X obj 165 163 udpreceive 9002;
+#X obj 19 247 routeOSC /on1;
+#X obj 115 248 routeOSC /off1;
+#X obj 215 248 routeOSC /on2;
+#X obj 305 248 routeOSC /off2;
+#X obj 405 248 routeOSC /on3;
+#X obj 505 248 routeOSC /off3;
+#X obj 18 321 s onM1;
+#X obj 118 321 s offM1;
+#X obj 218 321 s onM2;
+#X obj 308 321 s offM2;
+#X obj 408 321 s onM3;
+#X obj 508 321 s offM3;
+#X obj 26 287 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 116 287 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 206 287 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 296 287 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 396 287 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 496 287 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X connect 5 0 7 0;
+#X connect 5 0 8 0;
+#X connect 5 0 9 0;
+#X connect 5 0 10 0;
+#X connect 5 0 11 0;
+#X connect 5 0 12 0;
+#X connect 6 0 5 0;
+#X connect 7 0 19 0;
+#X connect 8 0 20 0;
+#X connect 9 0 21 0;
+#X connect 10 0 22 0;
+#X connect 11 0 23 0;
+#X connect 12 0 24 0;
+#X connect 19 0 13 0;
+#X connect 20 0 14 0;
+#X connect 21 0 15 0;
+#X connect 22 0 16 0;
+#X connect 23 0 17 0;
+#X connect 24 0 18 0;
