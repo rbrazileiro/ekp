@@ -467,11 +467,11 @@ to its right inlet.;
 #X restore 482 68 pd modulate.oOo..oOo..oOo..;
 #X obj 715 136 s \$0-gain;
 #X obj 125 129 hsl 60 10 0 1 0 0 \$0-a \$0-ra freq -2 -7 0 10 -130422
--262144 -355 870 1;
+-262144 -355 1770 1;
 #X obj 125 152 hsl 60 10 0 1 0 0 \$0-c \$0-rc feedback -2 -7 0 10 -130422
--262144 -355 3643 1;
+-262144 -355 3540 1;
 #X obj 212 129 hsl 60 10 0 1 0 0 \$0-b \$0-rb width -2 -7 0 10 -130422
--262144 -355 4470 1;
+-262144 -355 1770 1;
 #X obj 212 152 hsl 60 10 0 1 0 0 \$0-d \$0-rd wet -2 -7 0 10 -130422
 -262144 -355 5900 1;
 #X obj 125 175 hsl 60 10 0 1 0 0 \$0-e \$0-re gain -2 -7 0 10 -130422
@@ -486,7 +486,7 @@ to its right inlet.;
 ;
 #X obj 192 149 cnv 12 15 13 empty empty 3 1 6 0 12 -33289 -262144 0
 ;
-#N canvas 321 171 833 523 list-functions 1;
+#N canvas 158 6 833 523 list-functions 1;
 #N canvas 0 22 462 312 list-enumerate 0;
 #X obj 107 63 t a b;
 #N canvas 473 338 454 304 count 0;
@@ -878,7 +878,6 @@ to its right inlet.;
 #X obj 191 253 t a a;
 #X obj 490 332 r syn-User;
 #X floatatom 491 363 5 0 0 0 - - -;
-#X obj 491 390 * 5;
 #X connect 0 0 1 0;
 #X connect 2 0 1 0;
 #X connect 3 0 68 0;
@@ -952,8 +951,7 @@ to its right inlet.;
 #X connect 68 0 11 0;
 #X connect 68 1 7 2;
 #X connect 69 0 70 0;
-#X connect 70 0 71 0;
-#X connect 71 0 16 0;
+#X connect 70 0 16 0;
 #X restore 529 287 pd list-functions;
 #X obj 643 216 t b b;
 #X obj 684 227 s \$0-loadbang;

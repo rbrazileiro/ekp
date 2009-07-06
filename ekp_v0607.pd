@@ -1,4 +1,6 @@
 #N canvas 0 6 1012 523 10;
+#X declare -lib mrpeach/packOSC;
+#X declare -lib mrpeach/udpsend;
 #N canvas 546 203 349 190 mapsound 0;
 #X text 106 13 MAPA SONORO DO KERNEL;
 #N canvas 100 100 788 437 mapCPU 0;
@@ -377,6 +379,13 @@
 #X connect 39 0 41 0;
 #X connect 40 0 42 0;
 #X restore 781 -66 pd statusP;
+#X text 241 -72 DESLIGA;
+#X text 201 -73 LIGA;
+#X obj 203 -52 bng 30 250 50 0 empty empty empty 17 7 0 10 -4034 -13330
+-1;
+#X obj 248 -52 bng 30 250 50 0 empty empty empty 17 7 0 10 -258113
+-1 -1;
+#X text 209 -91 ENVIA DADOS;
 #N canvas 130 151 514 256 kernel 0;
 #X obj 241 -168 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
@@ -644,22 +653,270 @@ IRQ - servicing interrupts SOFTIRQ: servicing softirqs;
 #X connect 45 0 32 0;
 #X restore -112 -1 pd process;
 #X text 72 -93 KERNEL;
+#N canvas 360 95 440 327 panic 0;
+#X obj -185 84 import mrpeach/packOSC;
+#X obj -185 61 import mrpeach/udpsend;
+#X text -184 13 sending OSC messages;
+#X obj -142 281 udpsend;
+#X msg -137 147 disconnect;
+#X obj -202 147 loadbang;
+#X obj -124 245 packOSC;
+#X obj -124 215 r osc_packer;
+#X obj -224 106 inlet;
+#X obj -224 131 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj -38 99 inlet;
+#X obj -38 123 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#N canvas 424 131 814 321 sCPU 0;
+#X floatatom 248 124 5 0 0 0 - - -;
+#X floatatom 248 124 5 0 0 0 - - -;
+#X floatatom -30 117 5 0 0 0 - - -;
+#X obj 249 197 s osc_packer;
+#X obj -30 193 s osc_packer;
+#X obj 105 196 s osc_packer;
+#X msg -30 161 send /cpu1 \$1;
+#X msg 105 162 send /cpu2 \$1;
+#X msg 249 164 send /cpu3 \$1;
+#X obj 372 198 s osc_packer;
+#X msg 372 166 send /cpu4 \$1;
+#X floatatom 372 124 5 0 0 0 - - -;
+#X floatatom 372 124 5 0 0 0 - - -;
+#X obj 372 84 r cpuHald;
+#X obj 478 183 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 487 206 s on5;
+#X floatatom 478 119 5 0 0 0 - - -;
+#X obj 478 150 sel 1;
+#X obj 602 198 s osc_packer;
+#X msg 602 166 send /cpu5 \$1;
+#X obj 478 92 >= 3;
+#X obj 478 261 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 478 290 s off5;
+#X obj 478 236 delay 5000;
+#X obj -30 81 r cpuUSER;
+#X obj 248 84 r cpuXorg;
+#X obj 105 82 r cpuSystem;
+#X floatatom 105 116 5 0 0 0 - - -;
+#X obj 602 84 r cpuIdle;
+#X floatatom 602 120 5 0 0 0 - - -;
+#X connect 0 0 8 0;
+#X connect 2 0 6 0;
+#X connect 6 0 4 0;
+#X connect 7 0 5 0;
+#X connect 8 0 3 0;
+#X connect 10 0 9 0;
+#X connect 11 0 10 0;
+#X connect 11 0 20 0;
+#X connect 13 0 11 0;
+#X connect 14 0 15 0;
+#X connect 14 0 23 0;
+#X connect 16 0 17 0;
+#X connect 17 0 14 0;
+#X connect 19 0 18 0;
+#X connect 20 0 16 0;
+#X connect 21 0 22 0;
+#X connect 23 0 21 0;
+#X connect 24 0 2 0;
+#X connect 25 0 0 0;
+#X connect 26 0 27 0;
+#X connect 27 0 7 0;
+#X connect 28 0 29 0;
+#X connect 29 0 19 0;
+#X restore 98 90 pd sCPU;
+#N canvas 42 109 758 394 sSamples 0;
+#X obj 12 -179 r sFirefox;
+#X obj 143 -178 r sGedit;
+#X obj 251 -178 r sTerminal;
+#X obj 13 -84 s osc_packer;
+#X msg 12 -116 send /sFirefox \$1;
+#X obj 144 -82 s osc_packer;
+#X msg 143 -114 send /sGedit \$1;
+#X obj 254 -82 s osc_packer;
+#X msg 253 -114 send /sTerminal \$1;
+#X obj 383 -82 s osc_packer;
+#X obj 382 -178 r sGimp;
+#X msg 382 -114 send /sGimp \$1;
+#X obj 13 46 s osc_packer;
+#X floatatom 12 -17 5 0 0 0 - - -;
+#X obj 164 48 s osc_packer;
+#X floatatom 163 -15 5 0 0 0 - - -;
+#X obj 294 48 s osc_packer;
+#X floatatom 293 -15 5 0 0 0 - - -;
+#X obj 413 48 s osc_packer;
+#X floatatom 412 -15 5 0 0 0 - - -;
+#X obj 12 -49 r synthfirefox;
+#X obj 163 -48 r synthGedit;
+#X obj 291 -48 r synthXorg;
+#X obj 412 -48 r delayXorg;
+#X obj 543 48 s osc_packer;
+#X floatatom 542 -15 5 0 0 0 - - -;
+#X obj 542 -48 r delayGimp;
+#X msg 12 14 send /synthFirefox \$1;
+#X msg 161 16 send /synthGedit \$1;
+#X msg 293 16 send /synthXorg \$1;
+#X msg 412 16 send /delayXorg \$1;
+#X msg 542 16 send /delayGimp \$1;
+#X obj 13 188 s osc_packer;
+#X floatatom 12 125 5 0 0 0 - - -;
+#X obj 12 92 r synthHald;
+#X msg 12 156 send /synthHald \$1;
+#X obj 163 188 s osc_packer;
+#X floatatom 162 125 5 0 0 0 - - -;
+#X obj 162 92 r synthFind;
+#X msg 162 156 send /synthFind \$1;
+#X obj 12 -145 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 142 -145 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 252 -143 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 382 -145 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X connect 0 0 40 0;
+#X connect 1 0 41 0;
+#X connect 2 0 42 0;
+#X connect 4 0 3 0;
+#X connect 6 0 5 0;
+#X connect 8 0 7 0;
+#X connect 10 0 43 0;
+#X connect 11 0 9 0;
+#X connect 13 0 27 0;
+#X connect 15 0 28 0;
+#X connect 17 0 29 0;
+#X connect 19 0 30 0;
+#X connect 20 0 13 0;
+#X connect 21 0 15 0;
+#X connect 22 0 17 0;
+#X connect 23 0 19 0;
+#X connect 25 0 31 0;
+#X connect 26 0 25 0;
+#X connect 27 0 12 0;
+#X connect 28 0 14 0;
+#X connect 29 0 16 0;
+#X connect 30 0 18 0;
+#X connect 31 0 24 0;
+#X connect 33 0 35 0;
+#X connect 34 0 33 0;
+#X connect 35 0 32 0;
+#X connect 37 0 39 0;
+#X connect 38 0 37 0;
+#X connect 39 0 36 0;
+#X connect 40 0 4 0;
+#X connect 41 0 6 0;
+#X connect 42 0 8 0;
+#X connect 43 0 11 0;
+#X restore 97 63 pd sSamples;
+#N canvas 0 0 623 391 sProcess 0;
+#X obj 79 154 s osc_packer;
+#X obj 80 67 r on1;
+#X msg 79 122 send /on1 \$1;
+#X obj 169 156 s osc_packer;
+#X obj 259 156 s osc_packer;
+#X obj 80 298 s osc_packer;
+#X obj 180 298 s osc_packer;
+#X obj 280 298 s osc_packer;
+#X obj 280 203 r off3;
+#X msg 280 266 send /off3 \$1;
+#X obj 79 99 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 169 99 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 259 99 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 80 235 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 180 235 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 280 235 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 170 67 r on2;
+#X obj 260 67 r on3;
+#X obj 80 203 r off1;
+#X obj 180 203 r off2;
+#X msg 169 124 send /on2 \$1;
+#X msg 259 125 send /on3 \$1;
+#X msg 80 266 send /off1 \$1;
+#X msg 180 266 send /off2 \$1;
+#X obj 380 298 s osc_packer;
+#X obj 380 235 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 380 266 send /off4 \$1;
+#X obj 380 203 r off4;
+#X obj 353 156 s osc_packer;
+#X obj 353 99 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 354 67 r on4;
+#X msg 353 124 send /on4 \$1;
+#X obj 463 156 s osc_packer;
+#X obj 463 99 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 464 67 r on5;
+#X msg 463 124 send /on5 \$1;
+#X obj 479 298 s osc_packer;
+#X obj 479 235 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 479 203 r off5;
+#X msg 479 268 send /off5 \$1;
+#X connect 1 0 10 0;
+#X connect 2 0 0 0;
+#X connect 8 0 15 0;
+#X connect 9 0 7 0;
+#X connect 10 0 2 0;
+#X connect 11 0 20 0;
+#X connect 12 0 21 0;
+#X connect 13 0 22 0;
+#X connect 14 0 23 0;
+#X connect 15 0 9 0;
+#X connect 16 0 11 0;
+#X connect 17 0 12 0;
+#X connect 18 0 13 0;
+#X connect 19 0 14 0;
+#X connect 20 0 3 0;
+#X connect 21 0 4 0;
+#X connect 22 0 5 0;
+#X connect 23 0 6 0;
+#X connect 25 0 26 0;
+#X connect 26 0 24 0;
+#X connect 27 0 25 0;
+#X connect 29 0 31 0;
+#X connect 30 0 29 0;
+#X connect 31 0 28 0;
+#X connect 33 0 35 0;
+#X connect 34 0 33 0;
+#X connect 35 0 32 0;
+#X connect 37 0 39 0;
+#X connect 38 0 37 0;
+#X connect 39 0 36 0;
+#X restore 98 115 pd sProcess;
+#X msg -202 176 connect localhost 9002;
+#X connect 4 0 3 0;
+#X connect 5 0 15 0;
+#X connect 6 0 3 0;
+#X connect 7 0 6 0;
+#X connect 8 0 9 0;
+#X connect 9 0 15 0;
+#X connect 10 0 11 0;
+#X connect 11 0 4 0;
+#X connect 15 0 3 0;
+#X restore 203 2 pd panic;
 #X obj -131 209 nbx 5 30 -1e+37 1e+37 0 0 empty syn-User empty 0 -8
-0 30 -257985 -1 -1 0 256;
+0 30 -257985 -1 -1 0.41 256;
 #X obj -121 172 cnv 5 80 30 empty empty kUser 10 15 0 30 -192048 -1
 0;
 #X obj 49 209 nbx 5 30 -1e+37 1e+37 0 0 empty syn-System empty 0 -8
-0 30 -257985 -1 -1 0 256;
+0 30 -257985 -1 -1 0.07 256;
 #X obj 53 172 cnv 5 80 30 empty empty kSystem 10 15 0 30 -192048 -1
 0;
 #X obj 229 209 nbx 5 30 -1e+37 1e+37 0 0 empty syn-Idle empty 0 -8
-0 30 -257985 -1 -1 0 256;
+0 30 -257985 -1 -1 140 256;
 #X obj 233 172 cnv 5 80 30 empty empty kIdle 10 15 0 30 -192048 -1
 0;
 #X obj -121 92 hsl 130 30 0 1 0 0 sKUser empty sKUser 0 -15 0 30 -4034
--1 -1 0 1;
+-1 -1 11200 1;
 #X obj 12 92 nbx 3 30 -1e+37 1e+37 0 0 empty sKUser empty 0 -8 0 30
--204800 -1 -1 0 256;
+-204800 -1 -1 0.868217 256;
 #N canvas 199 6 665 523 audio 0;
 #X obj 36 186 syn-xfm;
 #X obj 32 465 dac~;
@@ -833,9 +1090,9 @@ IRQ - servicing interrupts SOFTIRQ: servicing softirqs;
 #X obj 783 -45 tgl 30 0 empty empty empty 17 7 0 10 -260097 -1 -1 0
 1;
 #X obj 629 54 hsl 130 30 0 100 0 0 synthSet empty synthSet_User 0 -15
-0 30 -204786 -1 -1 0 1;
+0 30 -204786 -1 -1 8400 1;
 #X obj 762 54 nbx 3 30 -1e+37 1e+37 0 0 empty synthSet empty 0 -8 0
-30 -204800 -1 -1 0 256;
+30 -204800 -1 -1 65.1163 256;
 #X obj -80 -129 cnv 5 80 30 empty empty EmotionalKernelPanic 10 15
 0 30 -192048 -1 0;
 #X text -143 318 Mapeamento do Kernel Linux Processamento de Samples
@@ -843,23 +1100,25 @@ IRQ - servicing interrupts SOFTIRQ: servicing softirqs;
 #X text -142 334 RICARDO BRAZILEIRO - rbrazileiro at gmail dot com
 ArtLicence - Copyleft;
 #X obj 629 128 hsl 130 30 0 1 0 0 fA empty feedbackA 0 -15 0 30 -13330
--1 -1 0 1;
+-1 -1 8600 1;
 #X obj 762 128 nbx 3 30 -1e+37 1e+37 0 0 empty fA empty 0 -8 0 30 -204800
--1 -1 0 256;
+-1 -1 0.666667 256;
 #X obj 629 198 hsl 130 30 0 1 0 0 fB empty feedbackB 0 -15 0 30 -4032
--1 -1 0 1;
+-1 -1 7000 1;
 #X obj 762 198 nbx 3 30 -1e+37 1e+37 0 0 empty fB empty 0 -8 0 30 -204800
--1 -1 0 256;
+-1 -1 0.542636 256;
 #X obj 145 92 hradio 30 1 0 6 dSystem empty sKSystem 0 -15 0 30 -4034
--1 -1 0;
+-1 -1 4;
 #X obj 776 272 bng 30 250 50 0 vPiano500 empty vPiano-500 -1 -7 0 10
 -260097 -1 -1;
 #X obj 776 319 bng 30 250 50 0 vPiano250 empty vPiano-250 -1 -7 0 10
 -258113 -1 -1;
 #X obj 753 231 cnv 5 80 30 empty empty ePiano 10 15 0 20 -192048 -1
 0;
-#X connect 1 0 18 0;
-#X connect 2 0 18 1;
-#X connect 5 0 17 0;
-#X connect 6 0 17 1;
-#X connect 29 0 28 0;
+#X connect 1 0 23 0;
+#X connect 2 0 23 1;
+#X connect 5 0 22 0;
+#X connect 6 0 22 1;
+#X connect 19 0 25 0;
+#X connect 20 0 25 1;
+#X connect 35 0 34 0;
