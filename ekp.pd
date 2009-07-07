@@ -121,11 +121,9 @@
 #X obj 19 600 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X msg 19 625 0;
-#X obj 19 655 s stopGain;
 #X obj 19 567 change 1;
 #X obj 46 478 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 46 535 s startGain;
 #X obj 19 337 r syn-User;
 #X floatatom 19 283 5 0 0 0 - - -;
 #X obj 19 314 s synthKUser;
@@ -142,13 +140,19 @@
 #X obj 18 157 / 100;
 #X floatatom 19 180 5 0 0 0 - - -;
 #X obj 218 157 / 100;
-#X obj 19 390 < 0.6;
-#X obj 46 362 r sKUser;
+#X obj 34 360 r sKUser;
 #X obj 34 230 r synthSet;
 #X text 54 376 regula sensibilidade;
 #X obj 19 252 *;
-#X msg 46 505 0.3;
 #X obj 51 598 loadbang;
+#X obj 19 390 <;
+#X obj 19 655 s stopGain;
+#X msg 385 378 0;
+#X obj 385 408 s stopGain;
+#X obj 385 324 > 100;
+#X obj 385 351 sel 1;
+#X obj 46 535 s startGain;
+#X msg 46 505 0.3;
 #X connect 0 0 7 0;
 #X connect 1 0 6 0;
 #X connect 2 0 8 0;
@@ -164,40 +168,44 @@
 #X connect 12 0 15 0;
 #X connect 13 0 16 0;
 #X connect 14 0 17 0;
-#X connect 15 0 34 0;
-#X connect 15 0 43 0;
-#X connect 16 0 37 0;
-#X connect 16 0 45 0;
+#X connect 15 0 32 0;
+#X connect 15 0 41 0;
+#X connect 16 0 35 0;
+#X connect 16 0 43 0;
 #X connect 17 0 21 0;
-#X connect 17 0 41 0;
+#X connect 17 0 39 0;
 #X connect 18 0 20 0;
 #X connect 22 0 23 0;
-#X connect 23 0 27 0;
-#X connect 23 1 28 0;
+#X connect 23 0 26 0;
+#X connect 23 1 27 0;
 #X connect 24 0 25 0;
-#X connect 25 0 26 0;
-#X connect 27 0 24 0;
-#X connect 28 0 51 0;
-#X connect 30 0 46 0;
-#X connect 31 0 32 0;
-#X connect 33 0 35 0;
-#X connect 34 0 33 0;
-#X connect 36 0 38 0;
-#X connect 37 0 36 0;
-#X connect 39 0 40 0;
-#X connect 41 0 39 0;
-#X connect 43 0 44 0;
-#X connect 44 0 19 0;
-#X connect 44 0 50 0;
-#X connect 45 0 18 0;
-#X connect 46 0 22 0;
-#X connect 47 0 46 1;
-#X connect 48 0 50 1;
-#X connect 50 0 31 0;
-#X connect 51 0 29 0;
-#X connect 52 0 25 0;
+#X connect 25 0 50 0;
+#X connect 26 0 24 0;
+#X connect 27 0 56 0;
+#X connect 28 0 49 0;
+#X connect 29 0 30 0;
+#X connect 31 0 33 0;
+#X connect 32 0 31 0;
+#X connect 34 0 36 0;
+#X connect 35 0 34 0;
+#X connect 37 0 38 0;
+#X connect 37 0 53 0;
+#X connect 39 0 37 0;
+#X connect 41 0 42 0;
+#X connect 42 0 19 0;
+#X connect 42 0 47 0;
+#X connect 43 0 18 0;
+#X connect 44 0 49 1;
+#X connect 45 0 47 1;
+#X connect 47 0 29 0;
+#X connect 48 0 25 0;
+#X connect 49 0 22 0;
+#X connect 51 0 52 0;
+#X connect 53 0 54 0;
+#X connect 54 0 51 0;
+#X connect 56 0 55 0;
 #X restore 134 40 pd mapKernel;
-#X restore 781 -90 pd mapsound;
+#X restore 781 -105 pd mapsound;
 #X obj -112 -55 bng 30 250 50 0 empty empty empty 17 7 0 10 -4034 -13330
 -1;
 #X obj -55 -54 bng 30 250 50 0 empty empty empty 17 7 0 10 -258113
@@ -302,7 +310,7 @@
 #X obj 415 64 r off4;
 #X obj 473 65 r on5;
 #X obj 525 66 r off5;
-#X obj 64 249 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 64 249 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 64 221 r state02;
 #X connect 0 0 10 0;
@@ -376,7 +384,7 @@
 #X connect 38 3 40 0;
 #X connect 39 0 41 0;
 #X connect 40 0 42 0;
-#X restore 781 -66 pd statusP;
+#X restore 781 -81 pd statusP;
 #N canvas 130 151 514 256 kernel 0;
 #X obj 241 -168 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
@@ -532,8 +540,6 @@ IRQ - servicing interrupts SOFTIRQ: servicing softirqs;
 #X connect 3 0 1 0;
 #X connect 4 0 5 0;
 #X connect 5 0 7 0;
-#X connect 5 0 6 0;
-#X connect 6 0 8 0;
 #X connect 9 0 4 0;
 #X restore 56 0 pd kernel;
 #N canvas 0 6 623 523 process 0;
@@ -645,21 +651,21 @@ IRQ - servicing interrupts SOFTIRQ: servicing softirqs;
 #X restore -112 -1 pd process;
 #X text 72 -93 KERNEL;
 #X obj -131 209 nbx 5 30 -1e+37 1e+37 0 0 empty syn-User empty 0 -8
-0 30 -257985 -1 -1 0 256;
+0 30 -257985 -1 -1 0.75 256;
 #X obj -121 172 cnv 5 80 30 empty empty kUser 10 15 0 30 -192048 -1
 0;
 #X obj 49 209 nbx 5 30 -1e+37 1e+37 0 0 empty syn-System empty 0 -8
-0 30 -257985 -1 -1 0 256;
+0 30 -257985 -1 -1 0.13 256;
 #X obj 53 172 cnv 5 80 30 empty empty kSystem 10 15 0 30 -192048 -1
 0;
 #X obj 229 209 nbx 5 30 -1e+37 1e+37 0 0 empty syn-Idle empty 0 -8
-0 30 -257985 -1 -1 0 256;
+0 30 -257985 -1 -1 106 256;
 #X obj 233 172 cnv 5 80 30 empty empty kIdle 10 15 0 30 -192048 -1
 0;
-#X obj -121 92 hsl 130 30 0 1 0 0 sKUser empty sKUser 0 -15 0 30 -4034
--1 -1 0 1;
+#X obj -121 92 hsl 130 30 0 2 0 0 sKUser empty sKUser 0 -15 0 30 -4034
+-1 -1 5100 1;
 #X obj 12 92 nbx 3 30 -1e+37 1e+37 0 0 empty sKUser empty 0 -8 0 30
--204800 -1 -1 0 256;
+-204800 -1 -1 0.790698 256;
 #N canvas 199 6 665 523 audio 0;
 #X obj 36 186 syn-xfm;
 #X obj 32 465 dac~;
@@ -671,65 +677,78 @@ IRQ - servicing interrupts SOFTIRQ: servicing softirqs;
 #X obj 36 80 mtof;
 #X floatatom 36 101 7 0 0 0 - - -;
 #X obj 35 24 r synthKUser;
-#N canvas 0 6 991 523 orquestra 0;
+#X obj 232 277 loadbang;
+#X msg 232 300 0 1;
+#X connect 0 0 3 0;
+#X connect 2 0 1 0;
+#X connect 2 0 1 1;
+#X connect 3 0 2 0;
+#X connect 5 0 4 0;
+#X connect 6 0 7 0;
+#X connect 7 0 8 0;
+#X connect 8 0 0 0;
+#X connect 9 0 6 0;
+#X connect 10 0 11 0;
+#X connect 11 0 3 1;
+#X restore 783 -21 pd audio;
+#X obj 783 -60 tgl 30 0 empty empty empty 17 7 0 10 -260097 -1 -1 1
+1;
+#X obj 629 54 hsl 130 30 0 100 0 0 synthSet empty synthSet_User 0 -15
+0 30 -204786 -1 -1 11200 1;
+#X obj 762 54 nbx 3 30 -1e+37 1e+37 0 0 empty synthSet empty 0 -8 0
+30 -204800 -1 -1 86.8217 256;
+#X obj -80 -129 cnv 5 80 30 empty empty EmotionalKernelPanic 10 15
+0 30 -192048 -1 0;
+#X text -143 318 Mapeamento do Kernel Linux Processamento de Samples
+;
+#X text -142 334 RICARDO BRAZILEIRO - rbrazileiro at gmail dot com
+ArtLicence - Copyleft;
+#X obj 629 128 hsl 130 30 0 1 0 0 fA empty feedbackA 0 -15 0 30 -13330
+-1 -1 12000 1;
+#X obj 762 128 nbx 3 30 -1e+37 1e+37 0 0 empty fA empty 0 -8 0 30 -204800
+-1 -1 0.930233 256;
+#X obj 629 198 hsl 130 30 0 1 0 0 fB empty feedbackB 0 -15 0 30 -4032
+-1 -1 9400 1;
+#X obj 762 198 nbx 3 30 -1e+37 1e+37 0 0 empty fB empty 0 -8 0 30 -204800
+-1 -1 0.728682 256;
+#X obj 145 92 hradio 30 1 0 6 dSystem empty sKSystem 0 -15 0 30 -4034
+-1 -1 3;
+#X obj 776 272 bng 30 250 50 0 vPiano500 empty vPiano-500 -1 -7 0 10
+-260097 -1 -1;
+#X obj 776 319 bng 30 250 50 0 vPiano250 empty vPiano-250 -1 -7 0 10
+-258113 -1 -1;
+#X obj 753 231 cnv 5 80 30 empty empty ePiano 10 15 0 20 -192048 -1
+0;
+#N canvas 38 6 953 502 orquestra 0;
 #X obj 275 426 fluid~;
 #X obj 350 335 openpanel;
 #X obj 350 298 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X msg 350 369 load \$1;
 #X obj 268 472 ezdac~;
-#X msg 186 325 prog 1 \$1;
 #X floatatom 186 295 5 0 0 0 - - -;
 #X obj 129 104 list-dripslow;
-#X floatatom 128 138 5 0 0 0 - - -;
+#X floatatom 129 138 5 0 0 0 - - -;
 #X obj 210 145 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X msg 250 362 note 1 \$1 127;
-#X msg 204 66 62 64 78 80;
 #X obj 128 29 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X msg 148 15 stop;
-#X obj 282 248 prepend set;
-#X msg 310 168 60 63 70 72;
-#X msg 302 110 48 52 60 74;
-#X obj 56 362 counter 3;
-#X floatatom 57 392 5 0 0 0 - - -;
-#X obj 51 428 select 1 2 3;
-#X msg 309 142 60 62 72 76;
-#X floatatom 468 117 5 0 0 0 - - -;
-#X obj 468 146 sel 1;
-#X obj 468 253 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 340 232 prepend set;
+#X msg 360 94 48 52 60 74;
+#X msg 367 126 60 62 72 76;
+#X floatatom 716 0 5 0 0 0 - - -;
+#X obj 716 29 sel 1;
+#X obj 716 136 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 468 220 change 1;
-#X obj 495 171 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 468 9 r syn-User;
-#X floatatom 468 45 5 0 0 0 - - -;
-#X floatatom 558 117 5 0 0 0 - - -;
-#X obj 558 146 sel 1;
-#X obj 558 253 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 558 220 change 1;
-#X obj 585 171 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X msg 294 85 62 64 78 80;
-#X obj 813 98 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X obj 716 103 change 1;
+#X obj 743 54 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 833 98 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 853 98 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 813 64 select 1 2 3 4;
-#X obj 873 97 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X text 825 49 comment;
-#X obj 813 33 r statusProcessos;
-#X msg 353 398 load /home/brazileiro/audio/soundfonts/AI-APiano02trans.SF2
+#X obj 716 -108 r syn-User;
+#X floatatom 716 -72 5 0 0 0 - - -;
+#X msg 377 422 load /home/brazileiro/audio/soundfonts/AI-APiano02trans.SF2
 ;
-#X obj 468 83 < 0.6;
-#X obj 558 85 > 0.7;
-#X msg 311 194 48 60 72 76;
-#X msg 312 220 50 63 78 72;
+#X msg 369 178 48 60 72 76;
 #X obj 129 60 metro 250;
 #X obj 42 7 r sPiano;
 #X obj 186 11 r vPiano250;
@@ -740,124 +759,131 @@ IRQ - servicing interrupts SOFTIRQ: servicing softirqs;
 #X obj 43 60 sel 1;
 #X obj 10 106 r syn-Idle;
 #X floatatom 10 138 5 0 0 0 - - -;
-#X obj 10 170 < 100;
 #X obj 10 197 sel 1;
+#X floatatom 256 295 5 0 0 0 - - -;
+#X msg 186 325 p 2 \$1;
+#X msg 256 325 p 3 \$1;
+#X msg 250 362 note 1 \$1 127;
+#X floatatom 488 223 5 0 0 0 - - -;
+#X msg 484 330 \$3 \$1 \$2;
+#X obj 488 297 pack 0 0 1;
+#X msg 609 334 \$3 \$1 \$2;
+#X floatatom 609 226 5 0 0 0 - - -;
+#X floatatom 722 225 5 0 0 0 - - -;
+#X msg 722 336 \$3 \$1 \$2;
+#X obj 609 302 pack 0 0 2;
+#X obj 722 303 pack 0 0 3;
+#X obj 488 257 makenote 127 1000;
+#X obj 609 260 makenote 127 500;
+#X obj 722 260 makenote 127 500;
+#X msg 383 439 load /home/brazileiro/multimidia/pd/projetos/emotionalkernelpanic/ekp/Unison.sf2
+;
+#X msg 338 39 60 62 64 66 72 78 48;
+#X msg 352 69 62 64 78;
+#X msg 370 204 36 63 48 72;
+#X msg 368 152 61 62 63 64;
+#X msg 222 263 p 1 \$1;
+#X floatatom 222 237 5 0 0 0 - - -;
+#X msg 278 110 60 64 68;
+#X msg 205 65 65 66 60;
+#X msg 377 486 load /home/brazileiro/audio/soundfonts/SoundFonts/beat_machine/Partition
+A/RY-30 HOUSE/RY-30 HOUSE.sf2;
+#X obj 593 152 unpack f f f;
+#X obj 549 47 + 60;
+#X obj 549 18 random 12;
+#X floatatom 549 75 5 0 0 0 - - -;
+#X msg 540 105 \$1 66 60;
+#X obj 10 170 < 100;
+#X obj 743 -51 r sKUser;
+#X obj 716 -34 <;
+#X obj 399 -57 select 1 2 3;
+#X floatatom 481 -66 5 0 0 0 - - -;
+#X obj 399 -83 random 4;
 #X connect 0 0 4 0;
 #X connect 0 1 4 1;
 #X connect 1 0 3 0;
 #X connect 2 0 1 0;
 #X connect 3 0 0 0;
-#X connect 5 0 0 0;
-#X connect 6 0 5 0;
-#X connect 7 0 8 0;
-#X connect 7 1 9 0;
-#X connect 8 0 10 0;
-#X connect 9 0 11 0;
-#X connect 10 0 0 0;
-#X connect 11 0 7 1;
-#X connect 12 0 46 0;
-#X connect 13 0 46 0;
-#X connect 14 0 11 0;
-#X connect 15 0 14 0;
-#X connect 16 0 14 0;
-#X connect 17 0 18 0;
-#X connect 18 0 19 0;
-#X connect 20 0 14 0;
-#X connect 21 0 22 0;
-#X connect 22 0 24 0;
-#X connect 22 1 25 0;
-#X connect 23 0 33 0;
-#X connect 24 0 23 0;
-#X connect 26 0 27 0;
-#X connect 27 0 42 0;
-#X connect 27 0 43 0;
-#X connect 28 0 29 0;
-#X connect 29 0 31 0;
-#X connect 29 1 32 0;
-#X connect 30 0 16 0;
-#X connect 31 0 30 0;
-#X connect 33 0 14 0;
-#X connect 34 0 20 0;
-#X connect 35 0 15 0;
-#X connect 36 0 44 0;
-#X connect 37 0 34 0;
-#X connect 37 1 35 0;
-#X connect 37 2 36 0;
-#X connect 37 3 38 0;
-#X connect 38 0 45 0;
-#X connect 40 0 37 0;
-#X connect 41 0 0 0;
-#X connect 42 0 21 0;
-#X connect 43 0 28 0;
-#X connect 44 0 14 0;
-#X connect 45 0 14 0;
-#X connect 46 0 7 0;
-#X connect 47 0 52 0;
-#X connect 48 0 50 0;
-#X connect 49 0 51 0;
-#X connect 50 0 46 1;
-#X connect 51 0 46 1;
-#X connect 52 0 53 0;
-#X connect 53 0 12 0;
-#X connect 53 1 13 0;
-#X connect 54 0 55 0;
-#X connect 55 0 56 0;
-#X connect 56 0 57 0;
-#X connect 57 0 12 0;
-#X connect 57 1 13 0;
-#X restore -93 163 pd orquestra;
-#X obj 156 4 r syn-System;
-#X floatatom 156 33 5 0 0 0 - - -;
-#X obj 156 111 *;
-#X obj 171 55 r dSystem;
-#X floatatom 171 79 5 0 0 0 - - -;
-#X floatatom 156 136 5 0 0 0 - - -;
-#X msg 156 159 2 \$1;
-#X connect 0 0 3 0;
-#X connect 2 0 1 0;
-#X connect 2 0 1 1;
-#X connect 3 0 2 0;
-#X connect 5 0 4 0;
+#X connect 5 0 35 0;
 #X connect 6 0 7 0;
-#X connect 7 0 8 0;
-#X connect 8 0 0 0;
-#X connect 9 0 6 0;
-#X connect 11 0 12 0;
-#X connect 12 0 13 0;
-#X connect 13 0 16 0;
+#X connect 6 1 8 0;
+#X connect 7 0 37 0;
+#X connect 8 0 58 0;
+#X connect 9 0 23 0;
+#X connect 10 0 23 0;
+#X connect 11 0 58 0;
+#X connect 12 0 11 0;
+#X connect 13 0 11 0;
 #X connect 14 0 15 0;
-#X connect 15 0 13 1;
-#X connect 16 0 17 0;
-#X connect 17 0 0 1;
-#X restore 783 -6 pd audio;
-#X obj 783 -45 tgl 30 0 empty empty empty 17 7 0 10 -260097 -1 -1 0
-1;
-#X obj 629 54 hsl 130 30 0 100 0 0 synthSet empty synthSet_User 0 -15
-0 30 -204786 -1 -1 0 1;
-#X obj 762 54 nbx 3 30 -1e+37 1e+37 0 0 empty synthSet empty 0 -8 0
-30 -204800 -1 -1 0 256;
-#X obj -80 -129 cnv 5 80 30 empty empty EmotionalKernelPanic 10 15
-0 30 -192048 -1 0;
-#X text -143 318 Mapeamento do Kernel Linux Processamento de Samples
-;
-#X text -142 334 RICARDO BRAZILEIRO - rbrazileiro at gmail dot com
-ArtLicence - Copyleft;
-#X obj 629 128 hsl 130 30 0 1 0 0 fA empty feedbackA 0 -15 0 30 -13330
--1 -1 0 1;
-#X obj 762 128 nbx 3 30 -1e+37 1e+37 0 0 empty fA empty 0 -8 0 30 -204800
--1 -1 0 256;
-#X obj 629 198 hsl 130 30 0 1 0 0 fB empty feedbackB 0 -15 0 30 -4032
--1 -1 0 1;
-#X obj 762 198 nbx 3 30 -1e+37 1e+37 0 0 empty fB empty 0 -8 0 30 -204800
--1 -1 0 256;
-#X obj 145 92 hradio 30 1 0 6 dSystem empty sKSystem 0 -15 0 30 -4034
--1 -1 0;
-#X obj 776 272 bng 30 250 50 0 vPiano500 empty vPiano-500 -1 -7 0 10
--260097 -1 -1;
-#X obj 776 319 bng 30 250 50 0 vPiano250 empty vPiano-250 -1 -7 0 10
--258113 -1 -1;
-#X obj 753 231 cnv 5 80 30 empty empty ePiano 10 15 0 20 -192048 -1
-0;
+#X connect 15 0 17 0;
+#X connect 15 1 18 0;
+#X connect 16 0 62 0;
+#X connect 17 0 16 0;
+#X connect 18 0 70 0;
+#X connect 19 0 20 0;
+#X connect 20 0 67 0;
+#X connect 21 0 0 0;
+#X connect 22 0 11 0;
+#X connect 23 0 6 0;
+#X connect 24 0 29 0;
+#X connect 25 0 27 0;
+#X connect 26 0 28 0;
+#X connect 27 0 23 1;
+#X connect 28 0 23 1;
+#X connect 29 0 30 0;
+#X connect 30 0 9 0;
+#X connect 30 1 10 0;
+#X connect 31 0 32 0;
+#X connect 32 0 65 0;
+#X connect 33 0 9 0;
+#X connect 33 1 10 0;
+#X connect 34 0 36 0;
+#X connect 35 0 0 0;
+#X connect 36 0 0 0;
+#X connect 37 0 0 0;
+#X connect 38 0 47 0;
+#X connect 39 0 0 0;
+#X connect 40 0 39 0;
+#X connect 41 0 0 0;
+#X connect 42 0 48 0;
+#X connect 43 0 49 0;
+#X connect 44 0 0 0;
+#X connect 45 0 41 0;
+#X connect 46 0 44 0;
+#X connect 47 0 40 0;
+#X connect 47 1 40 1;
+#X connect 48 0 45 0;
+#X connect 48 1 45 1;
+#X connect 49 0 46 0;
+#X connect 49 1 46 1;
+#X connect 50 0 0 0;
+#X connect 51 0 11 0;
+#X connect 52 0 11 0;
+#X connect 53 0 11 0;
+#X connect 54 0 11 0;
+#X connect 55 0 0 0;
+#X connect 56 0 55 0;
+#X connect 57 0 11 0;
+#X connect 58 0 6 1;
+#X connect 58 0 60 0;
+#X connect 59 0 0 0;
+#X connect 60 0 38 0;
+#X connect 60 1 42 0;
+#X connect 60 2 43 0;
+#X connect 61 0 63 0;
+#X connect 62 0 61 0;
+#X connect 63 0 64 0;
+#X connect 64 0 11 0;
+#X connect 65 0 33 0;
+#X connect 66 0 67 1;
+#X connect 67 0 14 0;
+#X connect 68 0 51 0;
+#X connect 68 1 13 0;
+#X connect 68 2 54 0;
+#X connect 68 3 53 0;
+#X connect 70 0 68 0;
+#X connect 70 0 69 0;
+#X restore 783 -1 pd orquestra;
 #X connect 1 0 18 0;
 #X connect 2 0 18 1;
 #X connect 5 0 17 0;
