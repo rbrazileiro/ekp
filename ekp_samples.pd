@@ -595,22 +595,22 @@ IRQ - servicing interrupts SOFTIRQ: servicing softirqs;
 #X restore -112 -1 pd process;
 #X text 72 -93 KERNEL;
 #X obj -131 209 nbx 5 30 -1e+37 1e+37 0 0 empty syn-User empty 0 -8
-0 30 -257985 -1 -1 0.32 256;
+0 30 -257985 -1 -1 0.25 256;
 #X obj -121 172 cnv 5 80 30 empty empty kUser 10 15 0 30 -192048 -1
 0;
 #X obj 49 209 nbx 5 30 -1e+37 1e+37 0 0 empty syn-System empty 0 -8
-0 30 -257985 -1 -1 0.14 256;
+0 30 -257985 -1 -1 0.09 256;
 #X obj 53 172 cnv 5 80 30 empty empty kSystem 10 15 0 30 -192048 -1
 0;
 #X obj 229 209 nbx 5 30 -1e+37 1e+37 0 0 empty syn-Idle empty 0 -8
-0 30 -257985 -1 -1 126 256;
+0 30 -257985 -1 -1 155 256;
 #X obj 233 172 cnv 5 80 30 empty empty kIdle 10 15 0 30 -192048 -1
 0;
 #X obj -121 92 hsl 130 30 0 2 0 0 sKUser empty sKUser 0 -15 0 30 -4034
--1 -1 6600 1;
+-1 -1 4200 1;
 #X obj 12 92 nbx 3 30 -1e+37 1e+37 0 0 empty sKUser empty 0 -8 0 30
--204800 -1 -1 1.02326 256;
-#N canvas 231 6 667 523 audio 0;
+-204800 -1 -1 0.651163 256;
+#N canvas 297 6 667 523 audio 0;
 #X msg -77 68 \; pd dsp \$1;
 #X obj -77 33 inlet;
 #X obj 0 318 posdoc;

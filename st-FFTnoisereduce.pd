@@ -1,4 +1,4 @@
-#N canvas 242 45 982 329 10;
+#N canvas 42 45 982 329 10;
 #X obj 16 6 inlet~;
 #X obj 16 59 outlet~;
 #N canvas 0 22 774 606 rgb 0;
@@ -593,7 +593,7 @@ to its right inlet.;
 #X connect 32 0 31 0;
 #X connect 33 0 1 0;
 #X restore 77 175 pd fft-analysis;
-#N canvas 0 22 478 328 graph1 0;
+#N canvas 0 22 478 328 (subpatch) 0;
 #X array \$0-mask 512 float 1;
 #A 0 98.4791 116.622 128.841 129.413 129.69 131.724 126.402 135.68
 136.329 152.469 156.602 145.045 133.918 126.809 125.493 133.496 148.018
@@ -656,7 +656,7 @@ to its right inlet.;
 #X coords 0 0 1 1 400 300 0;
 #X restore 311 171 graph;
 #X text 361 171 \$0-mask;
-#N canvas 0 22 673 347 graph1 0;
+#N canvas 0 22 673 347 (subpatch) 0;
 #X array \$0-hann 1024 float 1;
 #A 0 0 9.41753e-06 3.76701e-05 8.4728e-05 0.000150621 0.000235319 0.000338852
 0.000461191 0.000602335 0.000762284 0.000941008 0.00113854 0.00135487
@@ -813,14 +813,14 @@ to its right inlet.;
 #X msg 402 235 amount gain;
 #X msg 553 258 0.2 0.49;
 #X obj 125 129 hsl 60 10 0 1 0 0 \$0-a \$0-ra amount -2 -7 0 10 -260409
--262144 -355 1180 1;
+-262144 -355 5900 1;
 #X obj 212 129 hsl 60 10 0 1 0 0 \$0-b \$0-rb gain -2 -7 0 10 -260409
 -262144 -355 2891 1;
 #X obj 105 126 cnv 12 15 13 empty empty 0 1 6 0 12 -33289 -262144 0
 ;
 #X obj 192 126 cnv 12 15 13 empty empty 1 1 6 0 12 -33289 -262144 0
 ;
-#N canvas 361 43 833 682 list-functions 0;
+#N canvas 158 6 833 523 list-functions 0;
 #N canvas 0 22 462 312 list-enumerate 0;
 #X obj 107 63 t a b;
 #N canvas 473 338 454 304 count 0;
@@ -1210,6 +1210,9 @@ to its right inlet.;
 #X obj 294 150 * 2;
 #X obj 295 170 + 1;
 #X obj 191 253 t a a;
+#X obj 520 278 loadbang;
+#X msg 517 302 1;
+#X floatatom 529 335 5 0 0 0 - - -;
 #X connect 0 0 1 0;
 #X connect 2 0 1 0;
 #X connect 3 0 68 0;
@@ -1282,6 +1285,9 @@ to its right inlet.;
 #X connect 67 0 7 1;
 #X connect 68 0 11 0;
 #X connect 68 1 7 2;
+#X connect 69 0 70 0;
+#X connect 70 0 71 0;
+#X connect 71 0 14 0;
 #X restore 463 293 pd list-functions;
 #X obj 93 4 inlet~;
 #X obj 93 57 outlet~;

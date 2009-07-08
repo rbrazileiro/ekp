@@ -1,0 +1,93 @@
+EMOTIONAL KERNEL PANIC
+++++++++++++++++++++++++++++++++++++++++++
+Coletivo Make Install - Recife/PE
+
+########## abstrações
+
+o corpo sem ORGÃOS
+
+(...) nos destroços da intersubjetividade, o ORGÃNICO e o ELETRÔNICO 
+ficam face a face. o CORPO eletrônico parece muito REAL. Ele se move, 
+responde ao olhar, se comunica. sua aparência é a NOSSA aparência. a 
+IDENTIDADE se manifesta e é reforçada, na medida em que a subjetividade 
+é extraída/imposta pelo outro eletrônico. (Critical Art Ensemble, 
+Distúrbio eletrônico,p71)
+
+
+######### sobre
+
+um sistema capaz de CAPTURAR sinais do sistema operacional com o 
+objetivo de (re)construir metáforas ente paradigmas computacionais e 
+simbolismos subjetivos. Uma intervenção que investiga as reações do 
+Kernel(Linux) e suas funcionalidades quando um usuário o provoca.
+
+
+######### máquina capaz de
+
+@ emitir sensações do kernel
+@ construir uma intervenção multimídia com as variáveis capturadas
+@ produzir uma interface que manipulasse as ações do kernel
+
+######### sistema de captura:
+
+@ /dev/dsp
+@ top
+@ ps
+@ proc/stat
+@ pure-data (ambiente de dev)
+
+######### licença:
+
+CopyLEFT - ArtLicence - GLP
+
+Coletivo Make Install
+
+
+
+
+
+
+
+
+
+
+
+EMOTI
+KERNEL
+KERNEL
+KERNEL
+KERNEL
+
+
+PANICCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+PANICCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+
+
+
+PANICCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+
+PANICCCCCCCCCCCCCCC
+B
+B
+
+
+
+
+
+
+
+ENCONTRO LIVRE
+
+
+
+
+
+
+R
+E
+C
+I
+F
+E
