@@ -565,7 +565,7 @@ to its right inlet.;
 #X msg 400 235 delay feedback gain;
 #X msg 602 231 0.4 0.49 0.49;
 #X obj 125 129 hsl 60 10 0 1 0 0 \$0-a \$0-ra delay -2 -7 0 10 -49
--262144 -355 3363 1;
+-262144 -355 2360 1;
 #X obj 125 152 hsl 60 10 0 1 0 0 \$0-c \$0-rc gain -2 -7 0 10 -49 -262144
 -355 2891 1;
 #X obj 212 129 hsl 60 10 0 1 0 0 \$0-b \$0-rb feedback -2 -7 0 10 -49
@@ -1043,8 +1043,9 @@ to its right inlet.;
 #X connect 68 0 11 0;
 #X connect 68 1 7 2;
 #X connect 69 0 70 0;
-#X connect 70 0 14 0;
 #X connect 70 0 71 0;
+#X connect 71 0 14 0;
+#X connect 71 0 15 0;
 #X restore 463 293 pd list-functions;
 #X obj 635 257 s \$0-loadbang;
 #X obj 90 5 inlet~;

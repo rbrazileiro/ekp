@@ -657,21 +657,21 @@ IRQ - servicing interrupts SOFTIRQ: servicing softirqs;
 #X restore -112 -1 pd process;
 #X text 72 -93 KERNEL;
 #X obj -131 209 nbx 5 30 -1e+37 1e+37 0 0 empty syn-User empty 0 -8
-0 30 -257985 -1 -1 0.83 256;
+0 30 -257985 -1 -1 0 256;
 #X obj -121 172 cnv 5 80 30 empty empty kUser 10 15 0 30 -192048 -1
 0;
 #X obj 49 209 nbx 5 30 -1e+37 1e+37 0 0 empty syn-System empty 0 -8
-0 30 -257985 -1 -1 0.17 256;
+0 30 -257985 -1 -1 0 256;
 #X obj 53 172 cnv 5 80 30 empty empty kSystem 10 15 0 30 -192048 -1
 0;
 #X obj 229 209 nbx 5 30 -1e+37 1e+37 0 0 empty syn-Idle empty 0 -8
-0 30 -257985 -1 -1 102 256;
+0 30 -257985 -1 -1 0 256;
 #X obj 233 172 cnv 5 80 30 empty empty kIdle 10 15 0 30 -192048 -1
 0;
 #X obj -121 92 hsl 130 30 0 3 0 0 sKUser arKUser sKUser 0 -15 0 30
--4034 -1 -1 25 1;
+-4034 -1 -1 4300 1;
 #X obj 12 92 nbx 3 30 -1e+37 1e+37 0 0 empty sKUser empty 0 -8 0 30
--204800 -1 -1 0.00581395 256;
+-204800 -1 -1 1 256;
 #N canvas 226 22 665 523 audio 0;
 #X obj 36 186 syn-xfm;
 #X obj 36 388 st-delayfb;
@@ -719,32 +719,26 @@ IRQ - servicing interrupts SOFTIRQ: servicing softirqs;
 #X connect 20 0 3 0;
 #X connect 21 0 3 0;
 #X restore 783 -26 pd audio;
-#X obj 783 -65 tgl 30 0 empty empty empty 17 7 0 10 -260097 -1 -1 1
+#X obj 783 -65 tgl 30 0 empty empty empty 17 7 0 10 -260097 -1 -1 0
 1;
-#X obj 629 46 hsl 130 30 0 100 0 0 synthSet arSynthSet synthSet_User
-0 -15 0 30 -204786 -1 -1 4565 1;
-#X obj 762 46 nbx 3 30 -1e+37 1e+37 0 0 empty synthSet empty 0 -8 0
-30 -204800 -1 -1 35.3876 256;
+#X obj 629 206 hsl 130 30 0 100 0 0 synthSet arSynthSet synthSet_User
+0 -15 0 30 -204786 -1 -1 28 1;
+#X obj 762 206 nbx 3 30 -1e+37 1e+37 0 0 empty synthSet empty 0 -8
+0 30 -204800 -1 -1 0.217054 256;
 #X obj -80 -129 cnv 5 80 30 empty empty EmotionalKernelPanic 10 15
 0 30 -192048 -1 0;
 #X text -143 318 Mapeamento do Kernel Linux Processamento de Samples
 ;
 #X text -142 334 RICARDO BRAZILEIRO - rbrazileiro at gmail dot com
 ArtLicence - Copyleft;
-#X obj 629 120 hsl 130 30 0 1 0 0 fA arfA feedbackA 0 -15 0 30 -13330
--1 -1 2182 1;
-#X obj 762 120 nbx 3 30 -1e+37 1e+37 0 0 empty fA empty 0 -8 0 30 -204800
--1 -1 0.169147 256;
-#X obj 629 190 hsl 130 30 0 1 0 0 fB arfB feedbackB 0 -15 0 30 -4032
--1 -1 4174 1;
-#X obj 762 190 nbx 3 30 -1e+37 1e+37 0 0 empty fB empty 0 -8 0 30 -204800
--1 -1 0.323566 256;
-#X obj 776 302 bng 30 250 50 0 vPiano500 empty vPiano-500 -1 -7 0 10
--260097 -1 -1;
-#X obj 776 349 bng 30 250 50 0 vPiano250 empty vPiano-250 -1 -7 0 10
--258113 -1 -1;
-#X obj 733 223 cnv 5 80 30 empty empty orquestr@ 10 15 0 20 -192048
--1 0;
+#X obj 629 280 hsl 130 30 0 1 0 0 fA arfA feedbackA 0 -15 0 30 -13330
+-1 -1 2055 1;
+#X obj 762 280 nbx 3 30 -1e+37 1e+37 0 0 empty fA empty 0 -8 0 30 -204800
+-1 -1 0.159302 256;
+#X obj 629 350 hsl 130 30 0 1 0 0 fB arfB feedbackB 0 -15 0 30 -4032
+-1 -1 5952 1;
+#X obj 762 350 nbx 3 30 -1e+37 1e+37 0 0 empty fB empty 0 -8 0 30 -204800
+-1 -1 0.461395 256;
 #N canvas 35 6 953 502 orquestra 0;
 #X obj 275 426 fluid~;
 #X obj 370 355 openpanel;
@@ -1009,18 +1003,16 @@ A/RY-30 HOUSE/RY-30 HOUSE.sf2;
 #X connect 110 0 14 0;
 #X restore 783 -6 pd orquestra;
 #X obj 399 209 nbx 5 30 -1e+37 1e+37 0 0 empty cpuXorg empty 0 -8 0
-30 -261682 -1 -1 10 256;
+30 -261682 -1 -1 0 256;
 #X obj 403 172 cnv 5 80 30 empty empty cpuXorg 10 15 0 30 -192048 -1
 0;
-#X obj 776 262 tgl 30 0 sPiano empty on/off -1 -7 0 15 -159808 -1 -1
-1 1;
-#X text 815 73 0.66;
-#X text 815 153 0.7;
-#X text 815 173 0.5;
+#X text 815 233 0.66;
+#X text 815 313 0.7;
+#X text 815 333 0.5;
 #X obj 149 92 hsl 130 30 5 60 0 0 rOrquestra arOrquestra rOrquestra
-0 -15 0 30 -4034 -1 -1 10451 1;
+0 -15 0 30 -4034 -1 -1 0 1;
 #X obj 282 92 nbx 3 30 -1e+37 1e+37 0 0 empty rOrquestra empty 0 -8
-0 30 -204800 -1 -1 49.5585 256;
+0 30 -204800 -1 -1 5 256;
 #N canvas 294 36 563 449 arduinoControl 0;
 #X obj 19 20 r pot1;
 #X obj 25 322 r pot2;
@@ -1091,7 +1083,7 @@ A/RY-30 HOUSE/RY-30 HOUSE.sf2;
 #X connect 32 0 30 0;
 #X connect 33 0 34 0;
 #X connect 34 0 35 0;
-#X restore 631 -93 pd arduinoControl;
+#X restore 753 20 pd arduinoControl;
 #X connect 1 0 18 0;
 #X connect 2 0 18 1;
 #X connect 5 0 17 0;
